@@ -48,12 +48,12 @@
             this.label11 = new System.Windows.Forms.Label();
             this.RequisiteSubjectTextBox = new System.Windows.Forms.TextBox();
             this.PreRequisiteRadioButton = new System.Windows.Forms.RadioButton();
-            this.CoRequisiteComboBox = new System.Windows.Forms.RadioButton();
+            this.CoRequisiteRadioButton = new System.Windows.Forms.RadioButton();
             this.SubjectDataGridView = new System.Windows.Forms.DataGridView();
-            this.SubjectCodeGrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescriptionGrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitsGrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CoPreGrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubjectCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescriptionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CoPreColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SaveButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SubjectDataGridView)).BeginInit();
@@ -164,26 +164,38 @@
             // OfferingComboBox
             // 
             this.OfferingComboBox.FormattingEnabled = true;
+            this.OfferingComboBox.Items.AddRange(new object[] {
+            "First Semester",
+            "Second Semester",
+            "Summer"});
             this.OfferingComboBox.Location = new System.Drawing.Point(187, 203);
             this.OfferingComboBox.Name = "OfferingComboBox";
             this.OfferingComboBox.Size = new System.Drawing.Size(121, 21);
             this.OfferingComboBox.TabIndex = 12;
+            this.OfferingComboBox.Text = "Select Offering";
             // 
             // CategoryComboBox
             // 
             this.CategoryComboBox.FormattingEnabled = true;
+            this.CategoryComboBox.Items.AddRange(new object[] {
+            "Lecture",
+            "Laboratory"});
             this.CategoryComboBox.Location = new System.Drawing.Point(187, 236);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(121, 21);
             this.CategoryComboBox.TabIndex = 13;
+            this.CategoryComboBox.Text = "Select Category";
             // 
             // CourseCodeComboBox
             // 
             this.CourseCodeComboBox.FormattingEnabled = true;
+            this.CourseCodeComboBox.Items.AddRange(new object[] {
+            "BSIT"});
             this.CourseCodeComboBox.Location = new System.Drawing.Point(187, 265);
             this.CourseCodeComboBox.Name = "CourseCodeComboBox";
             this.CourseCodeComboBox.Size = new System.Drawing.Size(121, 21);
             this.CourseCodeComboBox.TabIndex = 14;
+            this.CourseCodeComboBox.Text = "Select Course Code";
             // 
             // CurriculumYearTextBox
             // 
@@ -216,7 +228,7 @@
             this.RequisiteSubjectTextBox.Name = "RequisiteSubjectTextBox";
             this.RequisiteSubjectTextBox.Size = new System.Drawing.Size(100, 20);
             this.RequisiteSubjectTextBox.TabIndex = 18;
-            this.RequisiteSubjectTextBox.TextChanged += new System.EventHandler(this.RequisiteSubjectTextBox_TextChanged);
+            this.RequisiteSubjectTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RequisiteSubjectTextBox_KeyPress);
             // 
             // PreRequisiteRadioButton
             // 
@@ -229,53 +241,53 @@
             this.PreRequisiteRadioButton.Text = "Pre-requisite";
             this.PreRequisiteRadioButton.UseVisualStyleBackColor = true;
             // 
-            // CoRequisiteComboBox
+            // CoRequisiteRadioButton
             // 
-            this.CoRequisiteComboBox.AutoSize = true;
-            this.CoRequisiteComboBox.Location = new System.Drawing.Point(388, 395);
-            this.CoRequisiteComboBox.Name = "CoRequisiteComboBox";
-            this.CoRequisiteComboBox.Size = new System.Drawing.Size(80, 17);
-            this.CoRequisiteComboBox.TabIndex = 20;
-            this.CoRequisiteComboBox.TabStop = true;
-            this.CoRequisiteComboBox.Text = "Co-requisite";
-            this.CoRequisiteComboBox.UseVisualStyleBackColor = true;
+            this.CoRequisiteRadioButton.AutoSize = true;
+            this.CoRequisiteRadioButton.Location = new System.Drawing.Point(388, 395);
+            this.CoRequisiteRadioButton.Name = "CoRequisiteRadioButton";
+            this.CoRequisiteRadioButton.Size = new System.Drawing.Size(80, 17);
+            this.CoRequisiteRadioButton.TabIndex = 20;
+            this.CoRequisiteRadioButton.TabStop = true;
+            this.CoRequisiteRadioButton.Text = "Co-requisite";
+            this.CoRequisiteRadioButton.UseVisualStyleBackColor = true;
             // 
             // SubjectDataGridView
             // 
             this.SubjectDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SubjectDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SubjectCodeGrid,
-            this.DescriptionGrid,
-            this.UnitsGrid,
-            this.CoPreGrid});
+            this.SubjectCodeColumn,
+            this.DescriptionColumn,
+            this.UnitsColumn,
+            this.CoPreColumn});
             this.SubjectDataGridView.Location = new System.Drawing.Point(66, 429);
             this.SubjectDataGridView.Name = "SubjectDataGridView";
             this.SubjectDataGridView.Size = new System.Drawing.Size(445, 77);
             this.SubjectDataGridView.TabIndex = 21;
             // 
-            // SubjectCodeGrid
+            // SubjectCodeColumn
             // 
-            this.SubjectCodeGrid.HeaderText = "SubjectCode";
-            this.SubjectCodeGrid.Name = "SubjectCodeGrid";
-            this.SubjectCodeGrid.ReadOnly = true;
+            this.SubjectCodeColumn.HeaderText = "SubjectCode";
+            this.SubjectCodeColumn.Name = "SubjectCodeColumn";
+            this.SubjectCodeColumn.ReadOnly = true;
             // 
-            // DescriptionGrid
+            // DescriptionColumn
             // 
-            this.DescriptionGrid.HeaderText = "Description";
-            this.DescriptionGrid.Name = "DescriptionGrid";
-            this.DescriptionGrid.ReadOnly = true;
+            this.DescriptionColumn.HeaderText = "Description";
+            this.DescriptionColumn.Name = "DescriptionColumn";
+            this.DescriptionColumn.ReadOnly = true;
             // 
-            // UnitsGrid
+            // UnitsColumn
             // 
-            this.UnitsGrid.HeaderText = "Units";
-            this.UnitsGrid.Name = "UnitsGrid";
-            this.UnitsGrid.ReadOnly = true;
+            this.UnitsColumn.HeaderText = "Units";
+            this.UnitsColumn.Name = "UnitsColumn";
+            this.UnitsColumn.ReadOnly = true;
             // 
-            // CoPreGrid
+            // CoPreColumn
             // 
-            this.CoPreGrid.HeaderText = "Co/Pre-requisite";
-            this.CoPreGrid.Name = "CoPreGrid";
-            this.CoPreGrid.ReadOnly = true;
+            this.CoPreColumn.HeaderText = "Co/Pre-requisite";
+            this.CoPreColumn.Name = "CoPreColumn";
+            this.CoPreColumn.ReadOnly = true;
             // 
             // SaveButton
             // 
@@ -304,7 +316,7 @@
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.SubjectDataGridView);
-            this.Controls.Add(this.CoRequisiteComboBox);
+            this.Controls.Add(this.CoRequisiteRadioButton);
             this.Controls.Add(this.PreRequisiteRadioButton);
             this.Controls.Add(this.RequisiteSubjectTextBox);
             this.Controls.Add(this.label11);
@@ -356,13 +368,13 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox RequisiteSubjectTextBox;
         private System.Windows.Forms.RadioButton PreRequisiteRadioButton;
-        private System.Windows.Forms.RadioButton CoRequisiteComboBox;
+        private System.Windows.Forms.RadioButton CoRequisiteRadioButton;
         private System.Windows.Forms.DataGridView SubjectDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectCodeGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DescriptionGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitsGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CoPreGrid;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectCodeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescriptionColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitsColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CoPreColumn;
     }
 }

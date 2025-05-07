@@ -18,14 +18,9 @@ namespace EnrollmentSystem
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            string connectionsString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Database;Integrated Security=True;Encrypt=False";
+            string connectionsString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=StudentFile;Integrated Security=True";
             SqlConnection myConnection = new SqlConnection(connectionsString);
             string sql = "SELECT * FROM STUDENTFILE";
             SqlDataAdapter thisAdapter = new SqlDataAdapter(sql, myConnection);

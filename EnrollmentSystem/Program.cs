@@ -16,8 +16,7 @@ namespace EnrollmentSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Menu());
-            //ssss
+            Application.Run(new StudentEnrollment());
         }
     }
 }
