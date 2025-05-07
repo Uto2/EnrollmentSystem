@@ -27,7 +27,6 @@ namespace EnrollmentSystem
             StudentEntry StudentEntry = new
             StudentEntry();
             StudentEntry.Show();
-            this.Hide();
         }
 
         private void ScheduleEntry_Click(object sender, EventArgs e)
@@ -35,7 +34,6 @@ namespace EnrollmentSystem
             SubjectScheduleEntry subjectScheduleEntry = new
             SubjectScheduleEntry();
             subjectScheduleEntry.Show();
-            this.Hide();
         }
 
         private void SubjectEntryButton_Click(object sender, EventArgs e)
@@ -43,7 +41,13 @@ namespace EnrollmentSystem
             SubjectEntry subjectEntry = new
             SubjectEntry();
             subjectEntry.Show();
-            this.Hide();    
+        }
+
+        private void StudentEnrollmentButton_Click(object sender, EventArgs e)
+        {
+            StudentEnrollment studentEnrollment = new
+            StudentEnrollment();
+            studentEnrollment.Show();
         }
     }
 }

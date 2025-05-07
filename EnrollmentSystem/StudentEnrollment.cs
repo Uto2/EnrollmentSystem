@@ -39,7 +39,7 @@ namespace EnrollmentSystem
                 thisAdapter.Fill(thisDataSet, "EnrollmentHeaderFile");
                 DataRow thisRow = thisDataSet.Tables["EnrollmentHeaderFile"].NewRow();
                 thisRow["ENRHFSTUDID"] = IdNumberTextBox.Text;
-                thisRow["ENRHFSTUDSCHLYR"] = SchoolYearTextBox.Text;
+                thisRow["ENRHFSTUDSCHLYR"] = YearLabel.Text;
                 thisRow["ENRHFSTUDENCODER"] = EncoderTextBox.Text;
                 thisRow["ENRHFSTUDDATEENROLL"] = DateEnrollDateTimePicker.Value;
                 thisRow["ENRHFSTUDSTATUS"] = StatusComboBox.Text;
@@ -61,11 +61,10 @@ namespace EnrollmentSystem
                         thisConnection.Open();
                         using (SqlCommand thisCommand = thisConnection.CreateCommand())
                         {
-                            string sql = "SELECT * FROM SubjectSchedFile WHERE SSFEDPCODE = ?";
-
-
+                            string sql = "SELECT * FROM SubjectSchedFile WHERE SSFEDPCODE = @edpCode";
                             thisCommand.CommandText = sql;
                             thisCommand.Parameters.AddWithValue("@edpCode", EdpCodeTextBox.Text.Trim().ToUpper());
+
 
                             using (SqlDataReader ThisDataReader = thisCommand.ExecuteReader())
                             {
@@ -117,9 +116,10 @@ namespace EnrollmentSystem
                     thisConnection.Open();
                     using (SqlCommand thisCommand = thisConnection.CreateCommand())
                     {
-                        string sql = "SELECT * FROM StudentFile WHERE STFSTUDID = ?";
+                        string sql = "SELECT * FROM StudentFile WHERE STFSTUDID = @studentId";
                         thisCommand.CommandText = sql;
                         thisCommand.Parameters.AddWithValue("@studentId", IdNumberTextBox.Text.Trim().ToUpper());
+
 
                         using (SqlDataReader ThisDataReader = thisCommand.ExecuteReader())
                         {

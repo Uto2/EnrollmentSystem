@@ -32,14 +32,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ScheduleEntry = new System.Windows.Forms.Button();
             this.SubjectEntryButton = new System.Windows.Forms.Button();
+            this.StudentEnrollmentButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StudentEntryButton
             // 
-            this.StudentEntryButton.Location = new System.Drawing.Point(254, 128);
+            this.StudentEntryButton.Location = new System.Drawing.Point(245, 128);
             this.StudentEntryButton.Margin = new System.Windows.Forms.Padding(2);
             this.StudentEntryButton.Name = "StudentEntryButton";
-            this.StudentEntryButton.Size = new System.Drawing.Size(98, 34);
+            this.StudentEntryButton.Size = new System.Drawing.Size(126, 34);
             this.StudentEntryButton.TabIndex = 0;
             this.StudentEntryButton.Text = "Student Entry";
             this.StudentEntryButton.UseVisualStyleBackColor = true;
@@ -57,9 +58,9 @@
             // 
             // ScheduleEntry
             // 
-            this.ScheduleEntry.Location = new System.Drawing.Point(254, 243);
+            this.ScheduleEntry.Location = new System.Drawing.Point(245, 243);
             this.ScheduleEntry.Name = "ScheduleEntry";
-            this.ScheduleEntry.Size = new System.Drawing.Size(98, 34);
+            this.ScheduleEntry.Size = new System.Drawing.Size(126, 34);
             this.ScheduleEntry.TabIndex = 2;
             this.ScheduleEntry.Text = "Schedule Entry";
             this.ScheduleEntry.UseVisualStyleBackColor = true;
@@ -67,19 +68,30 @@
             // 
             // SubjectEntryButton
             // 
-            this.SubjectEntryButton.Location = new System.Drawing.Point(254, 186);
+            this.SubjectEntryButton.Location = new System.Drawing.Point(245, 186);
             this.SubjectEntryButton.Name = "SubjectEntryButton";
-            this.SubjectEntryButton.Size = new System.Drawing.Size(98, 34);
+            this.SubjectEntryButton.Size = new System.Drawing.Size(126, 34);
             this.SubjectEntryButton.TabIndex = 3;
             this.SubjectEntryButton.Text = "Subject Entry";
             this.SubjectEntryButton.UseVisualStyleBackColor = true;
             this.SubjectEntryButton.Click += new System.EventHandler(this.SubjectEntryButton_Click);
+            // 
+            // StudentEnrollmentButton
+            // 
+            this.StudentEnrollmentButton.Location = new System.Drawing.Point(245, 306);
+            this.StudentEnrollmentButton.Name = "StudentEnrollmentButton";
+            this.StudentEnrollmentButton.Size = new System.Drawing.Size(126, 34);
+            this.StudentEnrollmentButton.TabIndex = 4;
+            this.StudentEnrollmentButton.Text = "Schedule Enrollment";
+            this.StudentEnrollmentButton.UseVisualStyleBackColor = true;
+            this.StudentEnrollmentButton.Click += new System.EventHandler(this.StudentEnrollmentButton_Click);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 439);
+            this.Controls.Add(this.StudentEnrollmentButton);
             this.Controls.Add(this.SubjectEntryButton);
             this.Controls.Add(this.ScheduleEntry);
             this.Controls.Add(this.label1);
@@ -99,5 +111,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button ScheduleEntry;
         private System.Windows.Forms.Button SubjectEntryButton;
+        private System.Windows.Forms.Button StudentEnrollmentButton;
     }
 }

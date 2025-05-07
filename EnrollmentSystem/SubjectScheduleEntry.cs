@@ -54,6 +54,29 @@ namespace EnrollmentSystem
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
+                using (SqlConnection thisConnection = new SqlConnection(connectionsString))
+                {
+                    thisConnection.Open();
+                    string sql = "SELECT SFSUBJDESC FROM SUBJECTFILE WHERE SFSUBJCODE = @subjCode";
+
+                    using (SqlCommand thisCommand = new SqlCommand(sql, thisConnection))
+                    {
+                        thisCommand.Parameters.AddWithValue("@subjCode", SubjectCodeTextBox.Text.Trim());
+
+                        object result = thisCommand.ExecuteScalar();
+                        if (result != null)
+                        {
+                            DescriptionLabel.Text = result.ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Subject Code Not Found");
+                        }
+                    }
+                }
+            }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
                 SqlConnection thisConnection = new SqlConnection(connectionsString);
                 thisConnection.Open();
                 SqlCommand thisCommand = thisConnection.CreateCommand();

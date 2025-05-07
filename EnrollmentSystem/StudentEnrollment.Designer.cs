@@ -29,18 +29,25 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.NameLabel = new System.Windows.Forms.Label();
-            this.CourseLabel = new System.Windows.Forms.Label();
-            this.YearLabel = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ylabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.EdpCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubjectCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DaysColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoomColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdNumberTextBox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.NameLabel = new System.Windows.Forms.TextBox();
+            this.CourseLabel = new System.Windows.Forms.TextBox();
             this.EdpCodeTextBox = new System.Windows.Forms.TextBox();
-            this.SchoolYearTextBox = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.TotalUnitsLabel = new System.Windows.Forms.Label();
+            this.YearLabel = new System.Windows.Forms.TextBox();
+            this.TotalUnitsLabel = new System.Windows.Forms.TextBox();
+            this.ulabel = new System.Windows.Forms.Label();
             this.DateEnrollDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.Date = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,13 +56,6 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.StatusComboBox = new System.Windows.Forms.ComboBox();
-            this.EdpCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubjectCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DaysColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoomColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,32 +68,32 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "ID Number";
             // 
-            // NameLabel
+            // label
             // 
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(144, 95);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(35, 13);
-            this.NameLabel.TabIndex = 1;
-            this.NameLabel.Text = "Name";
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(144, 95);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(35, 13);
+            this.label.TabIndex = 1;
+            this.label.Text = "Name";
             // 
-            // CourseLabel
+            // label2
             // 
-            this.CourseLabel.AutoSize = true;
-            this.CourseLabel.Location = new System.Drawing.Point(139, 135);
-            this.CourseLabel.Name = "CourseLabel";
-            this.CourseLabel.Size = new System.Drawing.Size(40, 13);
-            this.CourseLabel.TabIndex = 2;
-            this.CourseLabel.Text = "Course";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(139, 135);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Course";
             // 
-            // YearLabel
+            // ylabel
             // 
-            this.YearLabel.AutoSize = true;
-            this.YearLabel.Location = new System.Drawing.Point(358, 135);
-            this.YearLabel.Name = "YearLabel";
-            this.YearLabel.Size = new System.Drawing.Size(29, 13);
-            this.YearLabel.TabIndex = 3;
-            this.YearLabel.Text = "Year";
+            this.ylabel.AutoSize = true;
+            this.ylabel.Location = new System.Drawing.Point(358, 135);
+            this.ylabel.Name = "ylabel";
+            this.ylabel.Size = new System.Drawing.Size(29, 13);
+            this.ylabel.TabIndex = 3;
+            this.ylabel.Text = "Year";
             // 
             // label5
             // 
@@ -120,6 +120,48 @@
             this.dataGridView1.Size = new System.Drawing.Size(743, 128);
             this.dataGridView1.TabIndex = 5;
             // 
+            // EdpCodeColumn
+            // 
+            this.EdpCodeColumn.HeaderText = "Edp Code";
+            this.EdpCodeColumn.Name = "EdpCodeColumn";
+            this.EdpCodeColumn.ReadOnly = true;
+            // 
+            // SubjectCodeColumn
+            // 
+            this.SubjectCodeColumn.HeaderText = "Subject Code";
+            this.SubjectCodeColumn.Name = "SubjectCodeColumn";
+            this.SubjectCodeColumn.ReadOnly = true;
+            // 
+            // StartTimeColumn
+            // 
+            this.StartTimeColumn.HeaderText = "Start Time";
+            this.StartTimeColumn.Name = "StartTimeColumn";
+            this.StartTimeColumn.ReadOnly = true;
+            // 
+            // EndTimeColumn
+            // 
+            this.EndTimeColumn.HeaderText = "End Time";
+            this.EndTimeColumn.Name = "EndTimeColumn";
+            this.EndTimeColumn.ReadOnly = true;
+            // 
+            // DaysColumn
+            // 
+            this.DaysColumn.HeaderText = "Days";
+            this.DaysColumn.Name = "DaysColumn";
+            this.DaysColumn.ReadOnly = true;
+            // 
+            // RoomColumn
+            // 
+            this.RoomColumn.HeaderText = "Room";
+            this.RoomColumn.Name = "RoomColumn";
+            this.RoomColumn.ReadOnly = true;
+            // 
+            // UnitsColumn
+            // 
+            this.UnitsColumn.HeaderText = "Units";
+            this.UnitsColumn.Name = "UnitsColumn";
+            this.UnitsColumn.ReadOnly = true;
+            // 
             // IdNumberTextBox
             // 
             this.IdNumberTextBox.Location = new System.Drawing.Point(200, 50);
@@ -128,19 +170,21 @@
             this.IdNumberTextBox.TabIndex = 6;
             this.IdNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdNumberTextBox_KeyPress);
             // 
-            // textBox1
+            // NameLabel
             // 
-            this.textBox1.Location = new System.Drawing.Point(200, 92);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 7;
+            this.NameLabel.Location = new System.Drawing.Point(200, 92);
+            this.NameLabel.Name = "NameLabel";
+            this.NameLabel.ReadOnly = true;
+            this.NameLabel.Size = new System.Drawing.Size(100, 20);
+            this.NameLabel.TabIndex = 7;
             // 
-            // textBox2
+            // CourseLabel
             // 
-            this.textBox2.Location = new System.Drawing.Point(200, 132);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 8;
+            this.CourseLabel.Location = new System.Drawing.Point(200, 132);
+            this.CourseLabel.Name = "CourseLabel";
+            this.CourseLabel.ReadOnly = true;
+            this.CourseLabel.Size = new System.Drawing.Size(100, 20);
+            this.CourseLabel.TabIndex = 8;
             // 
             // EdpCodeTextBox
             // 
@@ -150,28 +194,30 @@
             this.EdpCodeTextBox.TabIndex = 9;
             this.EdpCodeTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EdpCodeTextBox_KeyPress);
             // 
-            // SchoolYearTextBox
+            // YearLabel
             // 
-            this.SchoolYearTextBox.Location = new System.Drawing.Point(414, 128);
-            this.SchoolYearTextBox.Name = "SchoolYearTextBox";
-            this.SchoolYearTextBox.Size = new System.Drawing.Size(100, 20);
-            this.SchoolYearTextBox.TabIndex = 10;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(569, 416);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 11;
+            this.YearLabel.Location = new System.Drawing.Point(414, 128);
+            this.YearLabel.Name = "YearLabel";
+            this.YearLabel.ReadOnly = true;
+            this.YearLabel.Size = new System.Drawing.Size(100, 20);
+            this.YearLabel.TabIndex = 10;
             // 
             // TotalUnitsLabel
             // 
-            this.TotalUnitsLabel.AutoSize = true;
-            this.TotalUnitsLabel.Location = new System.Drawing.Point(505, 423);
+            this.TotalUnitsLabel.Location = new System.Drawing.Point(569, 416);
             this.TotalUnitsLabel.Name = "TotalUnitsLabel";
-            this.TotalUnitsLabel.Size = new System.Drawing.Size(58, 13);
-            this.TotalUnitsLabel.TabIndex = 12;
-            this.TotalUnitsLabel.Text = "Total Units";
+            this.TotalUnitsLabel.ReadOnly = true;
+            this.TotalUnitsLabel.Size = new System.Drawing.Size(100, 20);
+            this.TotalUnitsLabel.TabIndex = 11;
+            // 
+            // ulabel
+            // 
+            this.ulabel.AutoSize = true;
+            this.ulabel.Location = new System.Drawing.Point(505, 423);
+            this.ulabel.Name = "ulabel";
+            this.ulabel.Size = new System.Drawing.Size(58, 13);
+            this.ulabel.TabIndex = 12;
+            this.ulabel.Text = "Total Units";
             // 
             // DateEnrollDateTimePicker
             // 
@@ -245,48 +291,6 @@
             this.StatusComboBox.Size = new System.Drawing.Size(121, 21);
             this.StatusComboBox.TabIndex = 20;
             // 
-            // EdpCodeColumn
-            // 
-            this.EdpCodeColumn.HeaderText = "Edp Code";
-            this.EdpCodeColumn.Name = "EdpCodeColumn";
-            this.EdpCodeColumn.ReadOnly = true;
-            // 
-            // SubjectCodeColumn
-            // 
-            this.SubjectCodeColumn.HeaderText = "Subject Code";
-            this.SubjectCodeColumn.Name = "SubjectCodeColumn";
-            this.SubjectCodeColumn.ReadOnly = true;
-            // 
-            // StartTimeColumn
-            // 
-            this.StartTimeColumn.HeaderText = "Start Time";
-            this.StartTimeColumn.Name = "StartTimeColumn";
-            this.StartTimeColumn.ReadOnly = true;
-            // 
-            // EndTimeColumn
-            // 
-            this.EndTimeColumn.HeaderText = "End Time";
-            this.EndTimeColumn.Name = "EndTimeColumn";
-            this.EndTimeColumn.ReadOnly = true;
-            // 
-            // DaysColumn
-            // 
-            this.DaysColumn.HeaderText = "Days";
-            this.DaysColumn.Name = "DaysColumn";
-            this.DaysColumn.ReadOnly = true;
-            // 
-            // RoomColumn
-            // 
-            this.RoomColumn.HeaderText = "Room";
-            this.RoomColumn.Name = "RoomColumn";
-            this.RoomColumn.ReadOnly = true;
-            // 
-            // UnitsColumn
-            // 
-            this.UnitsColumn.HeaderText = "Units";
-            this.UnitsColumn.Name = "UnitsColumn";
-            this.UnitsColumn.ReadOnly = true;
-            // 
             // StudentEnrollment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -300,18 +304,18 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Date);
             this.Controls.Add(this.DateEnrollDateTimePicker);
+            this.Controls.Add(this.ulabel);
             this.Controls.Add(this.TotalUnitsLabel);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.SchoolYearTextBox);
+            this.Controls.Add(this.YearLabel);
             this.Controls.Add(this.EdpCodeTextBox);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.CourseLabel);
+            this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.IdNumberTextBox);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.YearLabel);
-            this.Controls.Add(this.CourseLabel);
-            this.Controls.Add(this.NameLabel);
+            this.Controls.Add(this.ylabel);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label);
             this.Controls.Add(this.label1);
             this.Name = "StudentEnrollment";
             this.Text = "StudentEnrollment";
@@ -325,18 +329,18 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label NameLabel;
-        private System.Windows.Forms.Label CourseLabel;
-        private System.Windows.Forms.Label YearLabel;
+        private System.Windows.Forms.Label label;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label ylabel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox IdNumberTextBox;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox NameLabel;
+        private System.Windows.Forms.TextBox CourseLabel;
         private System.Windows.Forms.TextBox EdpCodeTextBox;
-        private System.Windows.Forms.TextBox SchoolYearTextBox;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label TotalUnitsLabel;
+        private System.Windows.Forms.TextBox YearLabel;
+        private System.Windows.Forms.TextBox TotalUnitsLabel;
+        private System.Windows.Forms.Label ulabel;
         private System.Windows.Forms.DateTimePicker DateEnrollDateTimePicker;
         private System.Windows.Forms.Label Date;
         private System.Windows.Forms.Label label4;
