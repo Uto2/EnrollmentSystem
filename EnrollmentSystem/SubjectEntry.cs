@@ -29,6 +29,20 @@ namespace EnrollmentSystem
 
         private void SaveButton_Click_1(object sender, EventArgs e)
         {
+            // Check if any required field is empty
+            if (SubjectCodeTextbox.Text.Equals("") ||
+                DescriptionTextBox.Text.Equals("") ||
+                UnitsTextBox.Text.Equals("") ||
+                OfferingComboBox.Text.Equals("") ||
+                CategoryComboBox.Text.Equals("") ||
+                CourseCodeComboBox.Text.Equals("") ||
+                CurriculumYearTextBox.Text.Equals("") ||
+                (PreRequisiteRadioButton.Checked && RequisiteSubjectTextBox.Text.Equals("")))
+            {
+                MessageBox.Show("Please Fill up all required fields");
+                return; // Exit the method if validation fails
+            }
+
             SqlConnection thisConnection = new SqlConnection(connectionsString);
             string Sql = "Select * From SUBJECTFILE";
             SqlDataAdapter thisAdapter = new SqlDataAdapter(Sql, thisConnection);
@@ -107,6 +121,31 @@ namespace EnrollmentSystem
                     MessageBox.Show("Subject Code Not Found");
                 }
             }   
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            // Clear all textboxes
+            SubjectCodeTextbox.Clear();
+            DescriptionTextBox.Clear();
+            UnitsTextBox.Clear();
+            CurriculumYearTextBox.Clear();
+            RequisiteSubjectTextBox.Clear();
+
+            // Reset combo boxes to empty or default selection
+            OfferingComboBox.SelectedIndex = -1; // or OfferingComboBox.Text = "";
+            CategoryComboBox.SelectedIndex = -1; // or CategoryComboBox.Text = "";
+            CourseCodeComboBox.SelectedIndex = -1; // or CourseCodeComboBox.Text = "";
+
+            // Uncheck radio buttons if needed
+            PreRequisiteRadioButton.Checked = false;
+            CoRequisiteRadioButton.Checked = false;
+
+            // Clear the DataGridView if needed
+            SubjectDataGridView.Rows.Clear();
+
+            // Optional: Set focus back to the first field
+            SubjectCodeTextbox.Focus();
         }
     }
 }

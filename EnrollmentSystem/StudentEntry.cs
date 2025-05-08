@@ -62,5 +62,10 @@ namespace EnrollmentSystem
             }
             catch (Exception ex) { }
         }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
