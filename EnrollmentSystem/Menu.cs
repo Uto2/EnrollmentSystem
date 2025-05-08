@@ -26,6 +26,7 @@ namespace EnrollmentSystem
         {
             StudentEntry StudentEntry = new
             StudentEntry();
+            this.Hide();
             StudentEntry.Show();
         }
 
@@ -33,6 +34,7 @@ namespace EnrollmentSystem
         {
             SubjectScheduleEntry subjectScheduleEntry = new
             SubjectScheduleEntry();
+            this.Hide();
             subjectScheduleEntry.Show();
         }
 
@@ -40,6 +42,7 @@ namespace EnrollmentSystem
         {
             SubjectEntry subjectEntry = new
             SubjectEntry();
+            this.Hide();
             subjectEntry.Show();
         }
 
@@ -47,6 +50,7 @@ namespace EnrollmentSystem
         {
             StudentEnrollment studentEnrollment = new
             StudentEnrollment();
+            this.Hide();
             studentEnrollment.Show();
         }
     }

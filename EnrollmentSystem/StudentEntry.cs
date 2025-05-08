@@ -67,5 +67,13 @@ namespace EnrollmentSystem
         {
             this.Close();
         }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            Menu menu = new Menu();
+            this.Hide();
+            menu.ShowDialog();
+            this.Close();
+        }
     }
 }

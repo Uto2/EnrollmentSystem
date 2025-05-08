@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentEnrollment));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -58,6 +59,7 @@
             this.RoomColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.MenuButton = new System.Windows.Forms.Button();
             this.StatusLabel = new System.Windows.Forms.Label();
             this.EncoderTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -65,6 +67,7 @@
             this.Date = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -74,7 +77,8 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(32)))), ((int)(((byte)(60)))));
+            this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -87,7 +91,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(20, 18);
+            this.label7.Location = new System.Drawing.Point(121, 20);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(177, 25);
             this.label7.TabIndex = 0;
@@ -121,7 +125,7 @@
             this.StatusComboBox.Items.AddRange(new object[] {
             "Enrolled",
             "Unenrolled"});
-            this.StatusComboBox.Location = new System.Drawing.Point(600, 35);
+            this.StatusComboBox.Location = new System.Drawing.Point(600, 42);
             this.StatusComboBox.Name = "StatusComboBox";
             this.StatusComboBox.Size = new System.Drawing.Size(200, 21);
             this.StatusComboBox.TabIndex = 20;
@@ -129,73 +133,73 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label6.Location = new System.Drawing.Point(550, 38);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 15);
+            this.label6.Size = new System.Drawing.Size(47, 19);
             this.label6.TabIndex = 19;
             this.label6.Text = "Status";
             // 
             // YearLabel
             // 
-            this.YearLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.YearLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.YearLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.YearLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.YearLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.YearLabel.Location = new System.Drawing.Point(600, 13);
             this.YearLabel.Name = "YearLabel";
             this.YearLabel.ReadOnly = true;
-            this.YearLabel.Size = new System.Drawing.Size(200, 16);
+            this.YearLabel.Size = new System.Drawing.Size(200, 23);
             this.YearLabel.TabIndex = 10;
             // 
             // ylabel
             // 
             this.ylabel.AutoSize = true;
-            this.ylabel.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ylabel.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ylabel.Location = new System.Drawing.Point(550, 13);
             this.ylabel.Name = "ylabel";
-            this.ylabel.Size = new System.Drawing.Size(29, 15);
+            this.ylabel.Size = new System.Drawing.Size(35, 19);
             this.ylabel.TabIndex = 3;
             this.ylabel.Text = "Year";
             // 
             // CourseLabel
             // 
-            this.CourseLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.CourseLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CourseLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.CourseLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CourseLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.CourseLabel.Location = new System.Drawing.Point(300, 40);
             this.CourseLabel.Name = "CourseLabel";
             this.CourseLabel.ReadOnly = true;
-            this.CourseLabel.Size = new System.Drawing.Size(200, 16);
+            this.CourseLabel.Size = new System.Drawing.Size(200, 23);
             this.CourseLabel.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label2.Location = new System.Drawing.Point(250, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 15);
+            this.label2.Size = new System.Drawing.Size(52, 19);
             this.label2.TabIndex = 2;
             this.label2.Text = "Course";
             // 
             // NameLabel
             // 
-            this.NameLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.NameLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.NameLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.NameLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.NameLabel.Location = new System.Drawing.Point(300, 10);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.ReadOnly = true;
-            this.NameLabel.Size = new System.Drawing.Size(200, 16);
+            this.NameLabel.Size = new System.Drawing.Size(200, 23);
             this.NameLabel.TabIndex = 7;
             // 
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label.Location = new System.Drawing.Point(250, 10);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(39, 15);
+            this.label.Size = new System.Drawing.Size(45, 19);
             this.label.TabIndex = 1;
             this.label.Text = "Name";
             // 
@@ -212,10 +216,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label1.Location = new System.Drawing.Point(20, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 15);
+            this.label1.Size = new System.Drawing.Size(77, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "ID Number";
             // 
@@ -236,20 +240,20 @@
             // TotalUnitsLabel
             // 
             this.TotalUnitsLabel.AutoSize = true;
-            this.TotalUnitsLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.TotalUnitsLabel.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.TotalUnitsLabel.Location = new System.Drawing.Point(720, 220);
             this.TotalUnitsLabel.Name = "TotalUnitsLabel";
-            this.TotalUnitsLabel.Size = new System.Drawing.Size(14, 15);
+            this.TotalUnitsLabel.Size = new System.Drawing.Size(17, 19);
             this.TotalUnitsLabel.TabIndex = 13;
             this.TotalUnitsLabel.Text = "0";
             // 
             // ulabel
             // 
             this.ulabel.AutoSize = true;
-            this.ulabel.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.ulabel.Location = new System.Drawing.Point(650, 220);
+            this.ulabel.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ulabel.Location = new System.Drawing.Point(637, 220);
             this.ulabel.Name = "ulabel";
-            this.ulabel.Size = new System.Drawing.Size(65, 15);
+            this.ulabel.Size = new System.Drawing.Size(77, 19);
             this.ulabel.TabIndex = 12;
             this.ulabel.Text = "Total Units:";
             // 
@@ -266,10 +270,10 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label5.Location = new System.Drawing.Point(20, 13);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 15);
+            this.label5.Size = new System.Drawing.Size(70, 19);
             this.label5.TabIndex = 4;
             this.label5.Text = "EDP Code";
             // 
@@ -303,7 +307,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView1.Location = new System.Drawing.Point(20, 50);
+            this.dataGridView1.Location = new System.Drawing.Point(24, 70);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -315,7 +319,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(820, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(820, 112);
             this.dataGridView1.TabIndex = 5;
             // 
             // EdpCodeColumn
@@ -369,6 +373,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.MenuButton);
             this.panel4.Controls.Add(this.StatusLabel);
             this.panel4.Controls.Add(this.EncoderTextBox);
             this.panel4.Controls.Add(this.label4);
@@ -380,6 +385,20 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(860, 80);
             this.panel4.TabIndex = 3;
+            // 
+            // MenuButton
+            // 
+            this.MenuButton.BackColor = System.Drawing.Color.White;
+            this.MenuButton.FlatAppearance.BorderSize = 0;
+            this.MenuButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.MenuButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(32)))), ((int)(((byte)(60)))));
+            this.MenuButton.Location = new System.Drawing.Point(762, 40);
+            this.MenuButton.Name = "MenuButton";
+            this.MenuButton.Size = new System.Drawing.Size(90, 30);
+            this.MenuButton.TabIndex = 22;
+            this.MenuButton.Text = "Menu";
+            this.MenuButton.UseVisualStyleBackColor = false;
+            this.MenuButton.Click += new System.EventHandler(this.MenuButton_Click);
             // 
             // StatusLabel
             // 
@@ -395,7 +414,7 @@
             // 
             this.EncoderTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.EncoderTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.EncoderTextBox.Location = new System.Drawing.Point(100, 20);
+            this.EncoderTextBox.Location = new System.Drawing.Point(102, 19);
             this.EncoderTextBox.Name = "EncoderTextBox";
             this.EncoderTextBox.Size = new System.Drawing.Size(200, 23);
             this.EncoderTextBox.TabIndex = 16;
@@ -403,10 +422,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label4.Location = new System.Drawing.Point(20, 23);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 15);
+            this.label4.Size = new System.Drawing.Size(83, 19);
             this.label4.TabIndex = 15;
             this.label4.Text = "Encoded By:";
             // 
@@ -415,29 +434,28 @@
             this.DateEnrollDateTimePicker.CalendarFont = new System.Drawing.Font("Segoe UI", 9F);
             this.DateEnrollDateTimePicker.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.DateEnrollDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateEnrollDateTimePicker.Location = new System.Drawing.Point(400, 20);
+            this.DateEnrollDateTimePicker.Location = new System.Drawing.Point(406, 19);
             this.DateEnrollDateTimePicker.Name = "DateEnrollDateTimePicker";
-            this.DateEnrollDateTimePicker.Size = new System.Drawing.Size(120, 23);
+            this.DateEnrollDateTimePicker.Size = new System.Drawing.Size(129, 23);
             this.DateEnrollDateTimePicker.TabIndex = 13;
             // 
             // Date
             // 
             this.Date.AutoSize = true;
-            this.Date.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.Date.Location = new System.Drawing.Point(350, 23);
+            this.Date.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Date.Location = new System.Drawing.Point(359, 23);
             this.Date.Name = "Date";
-            this.Date.Size = new System.Drawing.Size(34, 15);
+            this.Date.Size = new System.Drawing.Size(41, 19);
             this.Date.TabIndex = 14;
             this.Date.Text = "Date:";
             // 
             // CancelButton
             // 
-            this.CancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.CancelButton.BackColor = System.Drawing.Color.White;
             this.CancelButton.FlatAppearance.BorderSize = 0;
-            this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CancelButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.CancelButton.ForeColor = System.Drawing.Color.White;
-            this.CancelButton.Location = new System.Drawing.Point(750, 40);
+            this.CancelButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.CancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(32)))), ((int)(((byte)(60)))));
+            this.CancelButton.Location = new System.Drawing.Point(666, 40);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(90, 30);
             this.CancelButton.TabIndex = 18;
@@ -447,18 +465,26 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.SaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(32)))), ((int)(((byte)(60)))));
             this.SaveButton.FlatAppearance.BorderSize = 0;
             this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.SaveButton.ForeColor = System.Drawing.Color.White;
-            this.SaveButton.Location = new System.Drawing.Point(650, 40);
+            this.SaveButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.SaveButton.ForeColor = System.Drawing.SystemColors.Window;
+            this.SaveButton.Location = new System.Drawing.Point(570, 40);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(90, 30);
             this.SaveButton.TabIndex = 17;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = false;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
+            this.panel5.Location = new System.Drawing.Point(30, 6);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(85, 50);
+            this.panel5.TabIndex = 1;
             // 
             // StudentEnrollment
             // 
@@ -525,5 +551,7 @@
     private System.Windows.Forms.Label Date;
     private System.Windows.Forms.Button CancelButton;
     private System.Windows.Forms.Button SaveButton;
-}
+        private System.Windows.Forms.Button MenuButton;
+        private System.Windows.Forms.Panel panel5;
+    }
 }

@@ -25,7 +25,6 @@ namespace EnrollmentSystem
         {
             using (SqlConnection thisConnection = new SqlConnection(connectionsString))
             {
-                // Check if any required field is empty
                 if (EdpCodeTextBox.Text.Equals("") ||
                     SubjectCodeTextBox.Text.Equals("") ||
                     TimeStartTextBox.Text.Equals("") ||
@@ -37,7 +36,7 @@ namespace EnrollmentSystem
                     AMPMComboBox.Text.Equals(""))
                 {
                     MessageBox.Show("Please fill up all required fields");
-                    return; // Exit the method if validation fails
+                    return;
                 }
 
                 string Ole = "Select * From SubjectSchedFile";
@@ -129,7 +128,6 @@ namespace EnrollmentSystem
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            // Clear all textboxes
             EdpCodeTextBox.Clear();
             SubjectCodeTextBox.Clear();
             TimeStartTextBox.Clear();
@@ -139,14 +137,19 @@ namespace EnrollmentSystem
             RoomTextBox.Clear();
             SchoolYearTextBox.Clear();
 
-            // Reset combo box selection
-            AMPMComboBox.SelectedIndex = -1;  // or AMPMComboBox.Text = "";
+            AMPMComboBox.SelectedIndex = -1;
 
-            // Clear the description label if used
             DescriptionLabel.Text = "";
 
-            // Optional: Set focus back to the first field
             EdpCodeTextBox.Focus();
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            Menu menu = new Menu();
+            this.Hide();
+            menu.ShowDialog();
+            this.Close();
         }
     }
 }
