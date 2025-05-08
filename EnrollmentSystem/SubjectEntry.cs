@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.OleDb;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EnrollmentSystem
@@ -20,69 +12,153 @@ namespace EnrollmentSystem
             InitializeComponent();
         }
 
-        string connectionsString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=StudentFile;Integrated Security=True";
+        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=StudentFile;Integrated Security=True";
 
         private void SubjectEntry_Load(object sender, EventArgs e)
         {
-
+            // Initialize combo boxes
+            OfferingComboBox.SelectedIndex = -1;
+            CategoryComboBox.SelectedIndex = -1;
+            CourseCodeComboBox.SelectedIndex = -1;
         }
 
         private void SaveButton_Click_1(object sender, EventArgs e)
         {
-            // Check if any required field is empty
-            if (SubjectCodeTextbox.Text.Equals("") ||
-                DescriptionTextBox.Text.Equals("") ||
-                UnitsTextBox.Text.Equals("") ||
-                OfferingComboBox.Text.Equals("") ||
-                CategoryComboBox.Text.Equals("") ||
-                CourseCodeComboBox.Text.Equals("") ||
-                CurriculumYearTextBox.Text.Equals("") ||
-                (PreRequisiteRadioButton.Checked && RequisiteSubjectTextBox.Text.Equals("")))
+            // Validate required fields
+            if (!ValidateInputs())
+                return;
+
+            // Save main subject
+            if (!SaveSubject())
+                return;
+
+            // Save requisites if any
+            if (PreRequisiteRadioButton.Checked || CoRequisiteRadioButton.Checked)
             {
-                MessageBox.Show("Please Fill up all required fields");
-                return; // Exit the method if validation fails
+                SaveRequisites();
             }
 
-            SqlConnection thisConnection = new SqlConnection(connectionsString);
-            string Sql = "Select * From SUBJECTFILE";
-            SqlDataAdapter thisAdapter = new SqlDataAdapter(Sql, thisConnection);
-            SqlCommandBuilder thisBuilder = new SqlCommandBuilder(thisAdapter);
-            DataSet thisDataSet = new DataSet();
+            MessageBox.Show("Subject and requisites saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ClearInputs();
+        }
 
-            thisAdapter.Fill(thisDataSet, "SUBJECTFILE");
-
-            DataRow thisRow = thisDataSet.Tables["SubjectFile"].NewRow();
-            thisRow["SFSUBJCODE"] = SubjectCodeTextbox.Text;
-            thisRow["SFSUBJDESC"] = DescriptionTextBox.Text;
-            thisRow["SFSUBJUNITS"] = UnitsTextBox.Text;
-            thisRow["SFSUBJREGOFRNG"] = OfferingComboBox.Text.Substring(0, 1);
-            thisRow["SFSUBJCATEGORY"] = CategoryComboBox.Text.Substring(0, 1);
-            thisRow["SFSUBJSTATUS"] = "AC";
-            thisRow["SFSUBJCOURSECODE"] = CourseCodeComboBox.Text;
-            thisRow["SFSUBJCURRCODE"] = CurriculumYearTextBox.Text;
-
-            thisDataSet.Tables["SubjectFile"].Rows.Add(thisRow);
-            thisAdapter.Update(thisDataSet, "SubjectFile");
-            MessageBox.Show("Recorded ");
-
-            if (PreRequisiteRadioButton.Checked)
+        private bool ValidateInputs()
+        {
+            // Check empty fields
+            if (string.IsNullOrWhiteSpace(SubjectCodeTextbox.Text) ||
+                string.IsNullOrWhiteSpace(DescriptionTextBox.Text) ||
+                string.IsNullOrWhiteSpace(UnitsTextBox.Text) ||
+                OfferingComboBox.SelectedIndex == -1 ||
+                CategoryComboBox.SelectedIndex == -1 ||
+                CourseCodeComboBox.SelectedIndex == -1 ||
+                string.IsNullOrWhiteSpace(CurriculumYearTextBox.Text))
             {
-                SqlConnection preReqConnection = new SqlConnection(connectionsString);
-                string preReqOle = "Select * From SubjectPreqFile";
-                SqlDataAdapter preReqAdapter = new SqlDataAdapter(preReqOle, preReqConnection);
-                SqlCommandBuilder preReqBuilder = new SqlCommandBuilder(preReqAdapter);
-                DataSet preReqDataSet = new DataSet();
+                MessageBox.Show("Please fill up all required fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
-                preReqAdapter.Fill(preReqDataSet, "SubjectPreqFile");
+            // Validate units is numeric
+            if (!int.TryParse(UnitsTextBox.Text, out int units) || units <= 0)
+            {
+                MessageBox.Show("Please enter valid units (positive number)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
-                DataRow preReqRow = preReqDataSet.Tables["SubjectPreqFile"].NewRow();
-                preReqRow["SUBJCODE"] = SubjectCodeTextbox.Text;
-                preReqRow["SUBJPRECODE"] = RequisiteSubjectTextBox.Text;
-                preReqRow["SUBJCATEGORY"] = CategoryComboBox.Text.Substring(0, 1);
+            // Check if requisite is required but not provided
+            if ((PreRequisiteRadioButton.Checked || CoRequisiteRadioButton.Checked) &&
+                SubjectDataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("Please add at least one requisite subject", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
-                preReqDataSet.Tables["SubjectPreqFile"].Rows.Add(preReqRow);
-                preReqAdapter.Update(preReqDataSet, "SubjectPreqFile");
-                MessageBox.Show("Pre-requisite Recorded ");
+            return true;
+        }
+
+        private bool SaveSubject()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string sql = @"INSERT INTO SUBJECTFILE 
+                                 (SFSUBJCODE, SFSUBJCOURSECODE, SFSUBJDESC, SFSUBJUNITS, 
+                                  SFSUBJREGOFRNG, SFSUBJCATEGORY, SFSUBJSTATUS, SFSUBJCURRCODE)
+                                 VALUES 
+                                 (@code, @courseCode, @desc, @units, 
+                                  @offering, @category, @status, @currCode)";
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@code", SubjectCodeTextbox.Text.Trim());
+                        command.Parameters.AddWithValue("@courseCode", CourseCodeComboBox.Text.Trim());
+                        command.Parameters.AddWithValue("@desc", DescriptionTextBox.Text.Trim());
+                        command.Parameters.AddWithValue("@units", int.Parse(UnitsTextBox.Text));
+                        command.Parameters.AddWithValue("@offering", OfferingComboBox.Text.Substring(0, 1));
+                        command.Parameters.AddWithValue("@category", CategoryComboBox.Text.Substring(0, 1));
+                        command.Parameters.AddWithValue("@status", "AC");
+                        command.Parameters.AddWithValue("@currCode", CurriculumYearTextBox.Text.Trim());
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627) // Primary key violation
+                {
+                    MessageBox.Show("Subject code already exists for this course", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+        }
+
+        private void SaveRequisites()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Delete existing requisites first to avoid duplicates
+                    string deleteSql = "DELETE FROM SUBJECTPREQFILE WHERE SUBJCODE = @subjectCode";
+                    using (SqlCommand deleteCommand = new SqlCommand(deleteSql, connection))
+                    {
+                        deleteCommand.Parameters.AddWithValue("@subjectCode", SubjectCodeTextbox.Text.Trim());
+                        deleteCommand.ExecuteNonQuery();
+                    }
+
+                    // Insert new requisites
+                    string insertSql = @"INSERT INTO SUBJECTPREQFILE 
+                                       (SUBJCODE, SUBJPRECODE, SUBJCATEGORY)
+                                       VALUES (@subjectCode, @preCode, @category)";
+
+                    foreach (DataGridViewRow row in SubjectDataGridView.Rows)
+                    {
+                        if (row.Cells[0].Value != null) // Check if subject code exists
+                        {
+                            using (SqlCommand insertCommand = new SqlCommand(insertSql, connection))
+                            {
+                                insertCommand.Parameters.AddWithValue("@subjectCode", SubjectCodeTextbox.Text.Trim());
+                                insertCommand.Parameters.AddWithValue("@preCode", row.Cells[0].Value.ToString());
+                                insertCommand.Parameters.AddWithValue("@category",
+                                    (PreRequisiteRadioButton.Checked) ? "P" : "C"); // P for Pre, C for Co
+                                insertCommand.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"Error saving requisites: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -90,62 +166,92 @@ namespace EnrollmentSystem
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                    SqlConnection thisConnection = new SqlConnection(connectionsString);
-                    thisConnection.Open();
-                    SqlCommand thisCommand = thisConnection.CreateCommand();
-
-                    string commandText = "SELECT * FROM SUBJECTFILE";
-                    thisCommand.CommandText = commandText;
-                    thisCommand.Parameters.AddWithValue("@subjectCode", RequisiteSubjectTextBox.Text.Trim().ToUpper());
-
-                    SqlDataReader thisReader = thisCommand.ExecuteReader();
-                    bool flag = false;
-
-                    while (thisReader.Read())
-                    {
-                    flag = true;
-                    string SubjectCodeColumn = thisReader["SFSUBJCODE"].ToString();
-                    string DescriptionColumn = thisReader["SFSUBJDESC"].ToString();
-                    string UnitsColumn = thisReader["SFSUBJUNITS"].ToString();
-
-                    int index = SubjectDataGridView.Rows.Add();
-                    SubjectDataGridView.Rows[index].Cells[0].Value = SubjectCodeColumn;
-                    SubjectDataGridView.Rows[index].Cells[1].Value = DescriptionColumn;
-                    SubjectDataGridView.Rows[index].Cells[2].Value = UnitsColumn;
-                    }
-                thisReader.Close();
-                thisConnection.Close();
-
-                if (!flag)
+                if (string.IsNullOrWhiteSpace(RequisiteSubjectTextBox.Text))
                 {
-                    MessageBox.Show("Subject Code Not Found");
+                    MessageBox.Show("Please enter a subject code", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-            }   
+
+                // Check if radio button is selected
+                if (!PreRequisiteRadioButton.Checked && !CoRequisiteRadioButton.Checked)
+                {
+                    MessageBox.Show("Please select whether this is a Pre-requisite or Co-requisite",
+                                  "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Check for duplicate requisite
+                foreach (DataGridViewRow row in SubjectDataGridView.Rows)
+                {
+                    if (row.Cells[0].Value?.ToString().ToUpper() == RequisiteSubjectTextBox.Text.Trim().ToUpper())
+                    {
+                        MessageBox.Show("This subject is already added as a requisite",
+                                       "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                // Check if subject exists
+                try
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string sql = "SELECT SFSUBJCODE, SFSUBJDESC, SFSUBJUNITS FROM SUBJECTFILE WHERE SFSUBJCODE = @code";
+                        using (SqlCommand command = new SqlCommand(sql, connection))
+                        {
+                            command.Parameters.AddWithValue("@code", RequisiteSubjectTextBox.Text.Trim());
+                            connection.Open();
+
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    int index = SubjectDataGridView.Rows.Add();
+                                    SubjectDataGridView.Rows[index].Cells[0].Value = reader["SFSUBJCODE"].ToString();
+                                    SubjectDataGridView.Rows[index].Cells[1].Value = reader["SFSUBJDESC"].ToString();
+                                    SubjectDataGridView.Rows[index].Cells[2].Value = reader["SFSUBJUNITS"].ToString();
+                                    SubjectDataGridView.Rows[index].Cells[3].Value =
+                                        (PreRequisiteRadioButton.Checked) ? "Pre-Requisite" : "Co-Requisite";
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Subject code not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error checking subject: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                RequisiteSubjectTextBox.Clear();
+            }
         }
 
-        private void ClearButton_Click(object sender, EventArgs e)
+        private void ClearInputs()
         {
-            // Clear all textboxes
             SubjectCodeTextbox.Clear();
             DescriptionTextBox.Clear();
             UnitsTextBox.Clear();
             CurriculumYearTextBox.Clear();
             RequisiteSubjectTextBox.Clear();
 
-            // Reset combo boxes to empty or default selection
-            OfferingComboBox.SelectedIndex = -1; // or OfferingComboBox.Text = "";
-            CategoryComboBox.SelectedIndex = -1; // or CategoryComboBox.Text = "";
-            CourseCodeComboBox.SelectedIndex = -1; // or CourseCodeComboBox.Text = "";
+            OfferingComboBox.SelectedIndex = -1;
+            CategoryComboBox.SelectedIndex = -1;
+            CourseCodeComboBox.SelectedIndex = -1;
 
-            // Uncheck radio buttons if needed
             PreRequisiteRadioButton.Checked = false;
             CoRequisiteRadioButton.Checked = false;
 
-            // Clear the DataGridView if needed
             SubjectDataGridView.Rows.Clear();
-
-            // Optional: Set focus back to the first field
             SubjectCodeTextbox.Focus();
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            ClearInputs();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)

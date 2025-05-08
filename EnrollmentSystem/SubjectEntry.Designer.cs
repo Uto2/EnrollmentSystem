@@ -19,6 +19,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SubjectEntry));
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
             this.SubjectDataGridView = new System.Windows.Forms.DataGridView();
@@ -52,7 +53,6 @@
             this.btnMenu = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panelHeader.SuspendLayout();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubjectDataGridView)).BeginInit();
@@ -71,6 +71,14 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(802, 60);
             this.panelHeader.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
+            this.panel5.Location = new System.Drawing.Point(28, 6);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(85, 50);
+            this.panel5.TabIndex = 23;
             // 
             // lblTitle
             // 
@@ -257,7 +265,8 @@
             this.CourseCodeComboBox.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CourseCodeComboBox.FormattingEnabled = true;
             this.CourseCodeComboBox.Items.AddRange(new object[] {
-            "BSIT"});
+            "BSIT",
+            "IS"});
             this.CourseCodeComboBox.Location = new System.Drawing.Point(620, 110);
             this.CourseCodeComboBox.Name = "CourseCodeComboBox";
             this.CourseCodeComboBox.Size = new System.Drawing.Size(120, 25);
@@ -461,14 +470,6 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.SaveButton_Click_1);
-            // 
-            // panel5
-            // 
-            this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
-            this.panel5.Location = new System.Drawing.Point(28, 6);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(85, 50);
-            this.panel5.TabIndex = 23;
             // 
             // SubjectEntry
             // 
