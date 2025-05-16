@@ -16,7 +16,6 @@ namespace EnrollmentSystem
 
         private void SubjectEntry_Load(object sender, EventArgs e)
         {
-            // Initialize combo boxes
             OfferingComboBox.SelectedIndex = -1;
             CategoryComboBox.SelectedIndex = -1;
             CourseCodeComboBox.SelectedIndex = -1;
@@ -24,15 +23,12 @@ namespace EnrollmentSystem
 
         private void SaveButton_Click_1(object sender, EventArgs e)
         {
-            // Validate required fields
             if (!ValidateInputs())
                 return;
 
-            // Save main subject
             if (!SaveSubject())
                 return;
 
-            // Save requisites if any
             if (PreRequisiteRadioButton.Checked || CoRequisiteRadioButton.Checked)
             {
                 SaveRequisites();
@@ -58,7 +54,7 @@ namespace EnrollmentSystem
             }
 
             // Validate units is numeric
-            if (!int.TryParse(UnitsTextBox.Text, out int units) || units <= 0)
+            if (!int.TryParse(UnitsTextBox.Text, out int units) || units <= -1)
             {
                 MessageBox.Show("Please enter valid units (positive number)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -94,8 +90,8 @@ namespace EnrollmentSystem
                         command.Parameters.AddWithValue("@courseCode", CourseCodeComboBox.Text.Trim());
                         command.Parameters.AddWithValue("@desc", DescriptionTextBox.Text.Trim());
                         command.Parameters.AddWithValue("@units", int.Parse(UnitsTextBox.Text));
-                        command.Parameters.AddWithValue("@offering", OfferingComboBox.Text.Substring(0, 1));
-                        command.Parameters.AddWithValue("@category", CategoryComboBox.Text.Substring(0, 1));
+                        command.Parameters.AddWithValue("@offering", OfferingComboBox.Text.Trim());
+                        command.Parameters.AddWithValue("@category", CategoryComboBox.Text.Trim());
                         command.Parameters.AddWithValue("@status", "AC");
                         command.Parameters.AddWithValue("@currCode", CurriculumYearTextBox.Text.Trim());
 

@@ -21,7 +21,7 @@ namespace EnrollmentSystem
 
         private void StudentEnrollment_Load(object sender, EventArgs e)
         {
-            // Initialize form load operations if needed
+
         }
 
         private bool CheckAndUpdateSubjectAvailability(string edpCode)
@@ -30,7 +30,6 @@ namespace EnrollmentSystem
             {
                 thisConnection.Open();
 
-                // First check if the subject exists and get its current status
                 string checkSql = "SELECT SSFSTATUS, SSFMAXSIZE, SSFCLASSSIZE FROM SubjectSchedFile WHERE SSFEDPCODE = @edpCode";
                 using (SqlCommand checkCommand = new SqlCommand(checkSql, thisConnection))
                 {
@@ -44,14 +43,12 @@ namespace EnrollmentSystem
                             int maxSize = Convert.ToInt32(reader["SSFMAXSIZE"]);
                             int classSize = Convert.ToInt32(reader["SSFCLASSSIZE"]);
 
-                            // If already closed, return false immediately
                             if (status == "CLOSED")
                             {
                                 MessageBox.Show("This subject is already full/closed and cannot accept more students.", "Subject Full", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return false;
                             }
 
-                            // If class is full, update status and return false
                             if (classSize >= maxSize)
                             {
                                 reader.Close(); // Close the reader before executing another command
@@ -67,7 +64,6 @@ namespace EnrollmentSystem
                                 return false;
                             }
 
-                            // If we get here, the subject is available
                             return true;
                         }
                         else
@@ -126,7 +122,6 @@ namespace EnrollmentSystem
             {
                 string edpCode = EdpCodeTextBox.Text.Trim();
 
-                // First check if the subject is available
                 if (!CheckAndUpdateSubjectAvailability(edpCode))
                 {
                     return;
