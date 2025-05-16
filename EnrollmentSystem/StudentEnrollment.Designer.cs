@@ -28,11 +28,12 @@
     /// </summary>
     private void InitializeComponent()
     {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentEnrollment));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentEnrollment));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.StatusComboBox = new System.Windows.Forms.ComboBox();
@@ -67,7 +68,6 @@
             this.Date = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -85,6 +85,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(900, 60);
             this.panel1.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
+            this.panel5.Location = new System.Drawing.Point(30, 6);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(85, 50);
+            this.panel5.TabIndex = 1;
             // 
             // label7
             // 
@@ -142,7 +150,7 @@
             // 
             // YearLabel
             // 
-            this.YearLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.YearLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.YearLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.YearLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.YearLabel.Location = new System.Drawing.Point(600, 13);
@@ -163,7 +171,7 @@
             // 
             // CourseLabel
             // 
-            this.CourseLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.CourseLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.CourseLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CourseLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.CourseLabel.Location = new System.Drawing.Point(300, 40);
@@ -184,7 +192,7 @@
             // 
             // NameLabel
             // 
-            this.NameLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.NameLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.NameLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.NameLabel.Location = new System.Drawing.Point(300, 10);
@@ -478,14 +486,6 @@
             this.SaveButton.UseVisualStyleBackColor = false;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // panel5
-            // 
-            this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
-            this.panel5.Location = new System.Drawing.Point(30, 6);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(85, 50);
-            this.panel5.TabIndex = 1;
-            // 
             // StudentEnrollment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -497,7 +497,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "StudentEnrollment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StudentEnrollment";

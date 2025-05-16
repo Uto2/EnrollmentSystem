@@ -55,7 +55,7 @@ namespace EnrollmentSystem
                 thisRow["SSFROOM"] = RoomTextBox.Text;
                 thisRow["SSFSCHOOLYEAR"] = SchoolYearTextBox.Text;
                 thisRow["SSFXM"] = AMPMComboBox.Text;
-                thisRow["SSFMAXSIZE"] = Convert.ToInt16(30);
+                thisRow["SSFMAXSIZE"] = Convert.ToInt16(30); // Class Max Size
                 thisRow["SSFCLASSSIZE"] = Convert.ToInt16(0);
 
                 thisDataSet.Tables["SubjectSchedFile"].Rows.Add(thisRow);

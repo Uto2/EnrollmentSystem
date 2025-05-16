@@ -132,6 +132,7 @@
             this.Controls.Add(this.SubjectEntryButton);
             this.Controls.Add(this.ScheduleEntry);
             this.Controls.Add(this.StudentEntryButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Menu";
             this.Text = "Menu";

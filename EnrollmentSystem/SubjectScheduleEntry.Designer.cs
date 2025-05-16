@@ -19,6 +19,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SubjectScheduleEntry));
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelForm = new System.Windows.Forms.Panel();
             this.AMPMComboBox = new System.Windows.Forms.ComboBox();
@@ -45,7 +46,6 @@
             this.btnMenu = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panelHeader.SuspendLayout();
             this.panelForm.SuspendLayout();
             this.panelButtons.SuspendLayout();
@@ -61,6 +61,14 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(602, 60);
             this.panelHeader.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
+            this.panel5.Location = new System.Drawing.Point(28, 5);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(85, 50);
+            this.panel5.TabIndex = 23;
             // 
             // lblTitle
             // 
@@ -179,6 +187,7 @@
             this.TimeEndTextBox.Name = "TimeEndTextBox";
             this.TimeEndTextBox.Size = new System.Drawing.Size(80, 25);
             this.TimeEndTextBox.TabIndex = 4;
+            this.TimeEndTextBox.Text = "-ex: 01:30-";
             // 
             // TimeStartTextBox
             // 
@@ -189,6 +198,7 @@
             this.TimeStartTextBox.Name = "TimeStartTextBox";
             this.TimeStartTextBox.Size = new System.Drawing.Size(80, 25);
             this.TimeStartTextBox.TabIndex = 2;
+            this.TimeStartTextBox.Text = " -ex: 12:30-";
             // 
             // SubjectCodeTextBox
             // 
@@ -215,7 +225,7 @@
             // 
             this.lblSchoolYear.AutoSize = true;
             this.lblSchoolYear.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblSchoolYear.Location = new System.Drawing.Point(40, 357);
+            this.lblSchoolYear.Location = new System.Drawing.Point(80, 357);
             this.lblSchoolYear.Name = "lblSchoolYear";
             this.lblSchoolYear.Size = new System.Drawing.Size(82, 19);
             this.lblSchoolYear.TabIndex = 9;
@@ -225,7 +235,7 @@
             // 
             this.lblRoom.AutoSize = true;
             this.lblRoom.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblRoom.Location = new System.Drawing.Point(40, 317);
+            this.lblRoom.Location = new System.Drawing.Point(80, 317);
             this.lblRoom.Name = "lblRoom";
             this.lblRoom.Size = new System.Drawing.Size(48, 19);
             this.lblRoom.TabIndex = 8;
@@ -235,7 +245,7 @@
             // 
             this.lblSection.AutoSize = true;
             this.lblSection.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblSection.Location = new System.Drawing.Point(40, 277);
+            this.lblSection.Location = new System.Drawing.Point(80, 277);
             this.lblSection.Name = "lblSection";
             this.lblSection.Size = new System.Drawing.Size(56, 19);
             this.lblSection.TabIndex = 7;
@@ -245,7 +255,7 @@
             // 
             this.lblDays.AutoSize = true;
             this.lblDays.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblDays.Location = new System.Drawing.Point(40, 237);
+            this.lblDays.Location = new System.Drawing.Point(80, 237);
             this.lblDays.Name = "lblDays";
             this.lblDays.Size = new System.Drawing.Size(42, 19);
             this.lblDays.TabIndex = 6;
@@ -255,7 +265,7 @@
             // 
             this.lblTimeEnd.AutoSize = true;
             this.lblTimeEnd.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblTimeEnd.Location = new System.Drawing.Point(40, 197);
+            this.lblTimeEnd.Location = new System.Drawing.Point(80, 197);
             this.lblTimeEnd.Name = "lblTimeEnd";
             this.lblTimeEnd.Size = new System.Drawing.Size(68, 19);
             this.lblTimeEnd.TabIndex = 5;
@@ -265,7 +275,7 @@
             // 
             this.lblTimeStart.AutoSize = true;
             this.lblTimeStart.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblTimeStart.Location = new System.Drawing.Point(40, 157);
+            this.lblTimeStart.Location = new System.Drawing.Point(80, 157);
             this.lblTimeStart.Name = "lblTimeStart";
             this.lblTimeStart.Size = new System.Drawing.Size(74, 19);
             this.lblTimeStart.TabIndex = 4;
@@ -275,7 +285,7 @@
             // 
             this.lblDescription.AutoSize = true;
             this.lblDescription.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Italic);
-            this.lblDescription.Location = new System.Drawing.Point(40, 125);
+            this.lblDescription.Location = new System.Drawing.Point(80, 125);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(83, 19);
             this.lblDescription.TabIndex = 3;
@@ -295,7 +305,7 @@
             // 
             this.lblSubjectCode.AutoSize = true;
             this.lblSubjectCode.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblSubjectCode.Location = new System.Drawing.Point(40, 83);
+            this.lblSubjectCode.Location = new System.Drawing.Point(80, 83);
             this.lblSubjectCode.Name = "lblSubjectCode";
             this.lblSubjectCode.Size = new System.Drawing.Size(92, 19);
             this.lblSubjectCode.TabIndex = 1;
@@ -305,7 +315,7 @@
             // 
             this.lblEdpCode.AutoSize = true;
             this.lblEdpCode.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblEdpCode.Location = new System.Drawing.Point(40, 43);
+            this.lblEdpCode.Location = new System.Drawing.Point(80, 43);
             this.lblEdpCode.Name = "lblEdpCode";
             this.lblEdpCode.Size = new System.Drawing.Size(121, 19);
             this.lblEdpCode.TabIndex = 0;
@@ -368,14 +378,6 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.SaveButton_Click);
-            // 
-            // panel5
-            // 
-            this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
-            this.panel5.Location = new System.Drawing.Point(28, 5);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(85, 50);
-            this.panel5.TabIndex = 23;
             // 
             // SubjectScheduleEntry
             // 

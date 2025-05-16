@@ -19,7 +19,7 @@ namespace EnrollmentSystem
             // Initialize combo boxes
             OfferingComboBox.SelectedIndex = -1;
             CategoryComboBox.SelectedIndex = -1;
-            CourseCodeComboBox.SelectedIndex = -1; //Helloo
+            CourseCodeComboBox.SelectedIndex = -1;
         }
 
         private void SaveButton_Click_1(object sender, EventArgs e)

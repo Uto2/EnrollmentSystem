@@ -480,6 +480,7 @@
             this.Controls.Add(this.panelButtons);
             this.Controls.Add(this.panelHeader);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MinimumSize = new System.Drawing.Size(818, 597);
             this.Name = "SubjectEntry";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

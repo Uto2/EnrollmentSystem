@@ -48,10 +48,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.StatusTextBox = new System.Windows.Forms.ComboBox();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnMenu = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panelHeader.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -274,6 +274,14 @@
             this.panelHeader.Size = new System.Drawing.Size(452, 60);
             this.panelHeader.TabIndex = 19;
             // 
+            // panel5
+            // 
+            this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
+            this.panel5.Location = new System.Drawing.Point(24, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(85, 50);
+            this.panel5.TabIndex = 22;
+            // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
@@ -310,14 +318,6 @@
             this.panel1.Size = new System.Drawing.Size(452, 72);
             this.panel1.TabIndex = 21;
             // 
-            // panel5
-            // 
-            this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
-            this.panel5.Location = new System.Drawing.Point(24, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(85, 50);
-            this.panel5.TabIndex = 22;
-            // 
             // StudentEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,6 +341,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StudentEntry";
             this.Text = "Form1";

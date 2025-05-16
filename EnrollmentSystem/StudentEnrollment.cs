@@ -24,6 +24,62 @@ namespace EnrollmentSystem
             // Initialize form load operations if needed
         }
 
+        private bool CheckAndUpdateSubjectAvailability(string edpCode)
+        {
+            using (SqlConnection thisConnection = new SqlConnection(connectionString))
+            {
+                thisConnection.Open();
+
+                // First check if the subject exists and get its current status
+                string checkSql = "SELECT SSFSTATUS, SSFMAXSIZE, SSFCLASSSIZE FROM SubjectSchedFile WHERE SSFEDPCODE = @edpCode";
+                using (SqlCommand checkCommand = new SqlCommand(checkSql, thisConnection))
+                {
+                    checkCommand.Parameters.AddWithValue("@edpCode", edpCode);
+
+                    using (SqlDataReader reader = checkCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string status = reader["SSFSTATUS"].ToString();
+                            int maxSize = Convert.ToInt32(reader["SSFMAXSIZE"]);
+                            int classSize = Convert.ToInt32(reader["SSFCLASSSIZE"]);
+
+                            // If already closed, return false immediately
+                            if (status == "CLOSED")
+                            {
+                                MessageBox.Show("This subject is already full/closed and cannot accept more students.", "Subject Full", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return false;
+                            }
+
+                            // If class is full, update status and return false
+                            if (classSize >= maxSize)
+                            {
+                                reader.Close(); // Close the reader before executing another command
+
+                                string updateSql = "UPDATE SubjectSchedFile SET SSFSTATUS = 'CLOSED' WHERE SSFEDPCODE = @edpCode";
+                                using (SqlCommand updateCommand = new SqlCommand(updateSql, thisConnection))
+                                {
+                                    updateCommand.Parameters.AddWithValue("@edpCode", edpCode);
+                                    updateCommand.ExecuteNonQuery();
+                                }
+
+                                MessageBox.Show("This subject is now full and has been closed. No more students can enroll.", "Subject Full", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return false;
+                            }
+
+                            // If we get here, the subject is available
+                            return true;
+                        }
+                        else
+                        {
+                            // Subject not found
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
         private void IdNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -68,11 +124,19 @@ namespace EnrollmentSystem
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
+                string edpCode = EdpCodeTextBox.Text.Trim();
+
+                // First check if the subject is available
+                if (!CheckAndUpdateSubjectAvailability(edpCode))
+                {
+                    return;
+                }
+
                 // Check for duplicate EDP code
                 bool uniqueEDPCode = true;
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    if (row.Cells[1].Value?.ToString().ToUpper() == EdpCodeTextBox.Text.ToUpper())
+                    if (row.Cells[1].Value?.ToString().ToUpper() == edpCode.ToUpper())
                     {
                         uniqueEDPCode = false;
                         break;
@@ -86,7 +150,6 @@ namespace EnrollmentSystem
                 }
 
                 bool edpCodeFound = false;
-                string edpCode = "";
                 string subjectCode = "";
                 DateTime startTime = DateTime.MinValue;
                 DateTime endTime = DateTime.MinValue;
@@ -103,14 +166,13 @@ namespace EnrollmentSystem
                                   "WHERE SSF.SSFEDPCODE = @edpCode";
                     using (SqlCommand thisCommand = new SqlCommand(sql, thisConnection))
                     {
-                        thisCommand.Parameters.AddWithValue("@edpCode", EdpCodeTextBox.Text.Trim());
+                        thisCommand.Parameters.AddWithValue("@edpCode", edpCode);
 
                         using (SqlDataReader thisDataReader = thisCommand.ExecuteReader())
                         {
                             if (thisDataReader.Read())
                             {
                                 edpCodeFound = true;
-                                edpCode = thisDataReader["SSFEDPCODE"].ToString();
                                 subjectCode = thisDataReader["SSFSUBJCODE"].ToString();
                                 startTime = Convert.ToDateTime(thisDataReader["SSFSTARTTIME"]);
                                 endTime = Convert.ToDateTime(thisDataReader["SSFENDTIME"]);
@@ -259,6 +321,39 @@ namespace EnrollmentSystem
                             detailCommand.Parameters.AddWithValue("@subjectCode", row.Cells[0].Value.ToString());
                             detailCommand.Parameters.AddWithValue("@status", "EN"); // Enrolled
                             detailCommand.ExecuteNonQuery();
+                        }
+
+                        // Update class size for each enrolled subject
+                        string updateSizeSql = "UPDATE SubjectSchedFile SET SSFCLASSSIZE = SSFCLASSSIZE + 1 WHERE SSFEDPCODE = @edpCode";
+                        using (SqlCommand updateSizeCommand = new SqlCommand(updateSizeSql, thisConnection))
+                        {
+                            updateSizeCommand.Parameters.AddWithValue("@edpCode", row.Cells[1].Value.ToString());
+                            updateSizeCommand.ExecuteNonQuery();
+                        }
+
+                        // Check if this enrollment made the subject full
+                        string checkSizeSql = "SELECT SSFCLASSSIZE, SSFMAXSIZE FROM SubjectSchedFile WHERE SSFEDPCODE = @edpCode";
+                        using (SqlCommand checkSizeCommand = new SqlCommand(checkSizeSql, thisConnection))
+                        {
+                            checkSizeCommand.Parameters.AddWithValue("@edpCode", row.Cells[1].Value.ToString());
+                            using (SqlDataReader reader = checkSizeCommand.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    int classSize = Convert.ToInt32(reader["SSFCLASSSIZE"]);
+                                    int maxSize = Convert.ToInt32(reader["SSFMAXSIZE"]);
+                                    if (classSize >= maxSize)
+                                    {
+                                        reader.Close();
+                                        string closeSubjectSql = "UPDATE SubjectSchedFile SET SSFSTATUS = 'CLOSED' WHERE SSFEDPCODE = @edpCode";
+                                        using (SqlCommand closeCommand = new SqlCommand(closeSubjectSql, thisConnection))
+                                        {
+                                            closeCommand.Parameters.AddWithValue("@edpCode", row.Cells[1].Value.ToString());
+                                            closeCommand.ExecuteNonQuery();
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
